@@ -27,15 +27,15 @@ public class Eleccion extends JPanel implements ActionListener{
 	private JButton volver, start;
 	private JTextField textField;
 	private JTextField textField_1;
+	private JTextField textField_2;
 	private JTextField textField_3;
+	private JTextField textField_4;
 	private JTextField textField_5;
+	private JTextField textField_6;
 	private JTextField textField_7;
+	private JTextField textField_8;
 	private JTextField textField_9;
-	private JTextField textField_11;
-	private JTextField textField_13;
-	private JTextField textField_15;
-	private JTextField textField_17;
-	private JTextField textField_19;
+	private JTextField textField_10;
 	private JLabel imgEq,imgEq1,imgEq2,imgEq3,imgEq4,imgEq5,imgEq6,imgEq7,imgEq8,imgEq9;
 	JComboBox <String> pers1,pers2,pers3,pers4,pers5,pers6,pers7,pers8,pers9,pers10;
 	String fotos[] = {null,"Stickman","Mario", "Link", "Pikachu","Donkey Kong","Sonic","Creeper","Goku","Ratchet & Clank","Sub-Zero"};
@@ -74,12 +74,23 @@ int cantidades;
 			String s1 =	s = (String) pers1.getSelectedItem();
 			String s2 =	s = (String) pers2.getSelectedItem();
 			String s3 =	s = (String) pers3.getSelectedItem();
-			if(cantidades == 3 && s1 == null || s2 == null || s3 == null) {
+			if(s1 == null || s2 == null || s3 == null) {
 				JOptionPane.showInternalMessageDialog(null, "ELIGE TIPO DE EQUIPO", "Error de tipo de equipo", 0);
+			}
+			else if(textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+				JOptionPane.showInternalMessageDialog(null, "ELIGE NOMBRE DE EQUIPO", "Error de nombre de equipo", 0);
+			}
+			else if(textField_1.getText().equals(textField_2.getText()) || textField_1.getText().equals(textField_3.getText()) || textField_2.getText().equals(textField_3.getText())) {
+				JOptionPane.showInternalMessageDialog(null, "ELIGE NOMBRE DE EQUIPO DIFERENTE", "Error de nombre de equipo", 0);
+			}
+			else {
+				JFrame Marco = (JFrame)SwingUtilities.getWindowAncestor(this);
+				Marco.remove(this);
+				Marco.getContentPane().add(new Batalla());
+				Marco.setVisible(true);
 			}
 			}
 		}
-		
 		
 		
 		if(cantidades == 4) {
@@ -223,10 +234,10 @@ this.cantidades = cantidad;
 			textField.setColumns(10);
 
 
-			textField_3 = new JTextField();
-			textField_3.setColumns(10);
-			textField_3.setBounds(85, 188, 221, 20);
-			add(textField_3);
+			textField_2 = new JTextField();
+			textField_2.setColumns(10);
+			textField_2.setBounds(85, 188, 221, 20);
+			add(textField_2);
 
 			pers2 = new JComboBox<String>(fotos);
 			pers2.setBounds(312, 188, 127, 20);
@@ -259,10 +270,10 @@ this.cantidades = cantidad;
 			textField.setColumns(10);
 
 			
-			textField_5 = new JTextField();
-			textField_5.setColumns(10);
-			textField_5.setBounds(85, 292, 221, 20);
-			add(textField_5);
+			textField_3 = new JTextField();
+			textField_3.setColumns(10);
+			textField_3.setBounds(85, 292, 221, 20);
+			add(textField_3);
 
 			pers3 = new JComboBox<String>(fotos);
 			pers3.setBounds(312, 292, 127, 20);
@@ -300,10 +311,10 @@ this.cantidades = cantidad;
 			pers4.setModel(new DefaultComboBoxModel());
 			add(pers4);
 
-			textField_7 = new JTextField();
-			textField_7.setColumns(10);
-			textField_7.setBounds(85, 396, 221, 20);
-			add(textField_7);
+			textField_4 = new JTextField();
+			textField_4.setColumns(10);
+			textField_4.setBounds(85, 396, 221, 20);
+			add(textField_4);
 
 			imgEq = new JLabel("New label");
 			imgEq.setBounds(430, 360, 96, 93);
@@ -324,10 +335,10 @@ this.cantidades = cantidad;
 			pers5.setModel(new DefaultComboBoxModel());
 			add(pers5);
 
-			textField_9 = new JTextField();
-			textField_9.setColumns(10);
-			textField_9.setBounds(85, 500, 221, 20);
-			add(textField_9);
+			textField_5 = new JTextField();
+			textField_5.setColumns(10);
+			textField_5.setBounds(85, 500, 221, 20);
+			add(textField_5);
 
 			imgEq = new JLabel("New label");
 			imgEq.setBounds(430, 464, 96, 93);
@@ -348,10 +359,10 @@ this.cantidades = cantidad;
 			pers6.setModel(new DefaultComboBoxModel());
 			add(pers6);
 
-			textField_11 = new JTextField();
-			textField_11.setColumns(10);
-			textField_11.setBounds(629, 84, 221, 20);
-			add(textField_11);
+			textField_6 = new JTextField();
+			textField_6.setColumns(10);
+			textField_6.setBounds(629, 84, 221, 20);
+			add(textField_6);
 
 			imgEq= new JLabel("New label");
 			imgEq.setBounds(989, 48, 96, 93);
@@ -374,10 +385,10 @@ this.cantidades = cantidad;
 			pers7.setModel(new DefaultComboBoxModel());
 			add(pers7);
 
-			textField_13 = new JTextField();
-			textField_13.setColumns(10);
-			textField_13.setBounds(629, 188, 221, 20);
-			add(textField_13);
+			textField_7 = new JTextField();
+			textField_7.setColumns(10);
+			textField_7.setBounds(629, 188, 221, 20);
+			add(textField_7);
 
 			imgEq= new JLabel(new ImageIcon());
 			imgEq.setBounds(989, 152, 96, 93);
@@ -400,10 +411,10 @@ this.cantidades = cantidad;
 			pers8.setModel(new DefaultComboBoxModel());
 			add(pers8);
 
-			textField_15 = new JTextField();
-			textField_15.setColumns(10);
-			textField_15.setBounds(629, 292, 221, 20);
-			add(textField_15);
+			textField_8 = new JTextField();
+			textField_8.setColumns(10);
+			textField_8.setBounds(629, 292, 221, 20);
+			add(textField_8);
 
 			imgEq = new JLabel("New label");
 			imgEq.setBounds(989, 256, 96, 93);
@@ -424,10 +435,10 @@ this.cantidades = cantidad;
 			pers9.setModel(new DefaultComboBoxModel());
 			add(pers9);
 
-			textField_17 = new JTextField();
-			textField_17.setColumns(10);
-			textField_17.setBounds(629, 396, 221, 20);
-			add(textField_17);
+			textField_9 = new JTextField();
+			textField_9.setColumns(10);
+			textField_9.setBounds(629, 396, 221, 20);
+			add(textField_9);
 
 			imgEq = new JLabel("New label");
 			imgEq.setBounds(989, 360, 96, 93);
@@ -448,10 +459,10 @@ this.cantidades = cantidad;
 			pers10.setModel(new DefaultComboBoxModel());
 			add(pers10);
 
-			textField_19 = new JTextField();
-			textField_19.setColumns(10);
-			textField_19.setBounds(629, 500, 221, 20);
-			add(textField_19);
+			textField_10 = new JTextField();
+			textField_10.setColumns(10);
+			textField_10.setBounds(629, 500, 221, 20);
+			add(textField_10);
 
 			imgEq= new JLabel("New label");
 			imgEq.setBounds(989, 464, 96, 93);
