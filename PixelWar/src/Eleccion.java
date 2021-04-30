@@ -84,9 +84,13 @@ int cantidades;
 				JOptionPane.showInternalMessageDialog(null, "ELIGE NOMBRE DE EQUIPO DIFERENTE", "Error de nombre de equipo", 0);
 			}
 			else {
+				String tipos [] = {s1,s2,s3};
+				String nom [] = {textField_1.getText(),textField_2.getText(),textField_3.getText()};
+				
+				
 				JFrame Marco = (JFrame)SwingUtilities.getWindowAncestor(this);
 				Marco.remove(this);
-				Marco.getContentPane().add(new Batalla());
+				Marco.getContentPane().add(new Batalla(this.cantidades, tipos, nom));
 				Marco.setVisible(true);
 			}
 			}
