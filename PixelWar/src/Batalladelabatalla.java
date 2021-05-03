@@ -19,7 +19,9 @@ public class Batalladelabatalla {
 		
 	}
 	
-	
+	public void tresvstres() {
+		
+	}
 	
 	
 	

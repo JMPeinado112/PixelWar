@@ -85,8 +85,7 @@ int cantidades;
 			}
 			else {
 				String tipos [] = {s1,s2,s3};
-				String nom [] = {textField_1.getText(),textField_2.getText(),textField_3.getText()};
-				
+				String nom [] = {textField_1.getText(),textField_2.getText(),textField_3.getText()};	
 				
 				JFrame Marco = (JFrame)SwingUtilities.getWindowAncestor(this);
 				Marco.remove(this);

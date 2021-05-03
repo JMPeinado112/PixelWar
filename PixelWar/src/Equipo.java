@@ -30,9 +30,9 @@ public class Equipo{
 			this.hp = 200;
 			this.misil = 50;
 		}
-		if(tipo.equals("Ratchet & Clank")) {
-			this.hp = 200;
-			this.misil = 50;
+		if(tipo.equals("Donky Kong")) {
+			this.hp = 400;
+			this.misil = 20;
 		}
 		if(tipo.equals("Clank")) {
 			this.hp = 50;
