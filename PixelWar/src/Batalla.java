@@ -2,7 +2,11 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JProgressBar;
+import javax.swing.JSlider;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
@@ -13,6 +17,7 @@ import java.awt.event.ActionEvent;
 
 public class Batalla extends JPanel {
 	private JTextField textField;
+	private JSlider atk,def;
 	private JTextField textField_cohete;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -27,6 +32,7 @@ public class Batalla extends JPanel {
 	String ma = "0";
 	String md = "0";
 	int original =0;
+	int equipo=0;
 	/**
 	 * Create the panel.
 	 */
@@ -40,7 +46,6 @@ public class Batalla extends JPanel {
 
 		textField = new JTextField();
 		textField.setEnabled(false);
-		textField.setEditable(false);
 		textField.setBounds(270, 42, 163, 40);
 		add(textField);
 		textField.setColumns(10);
@@ -69,25 +74,34 @@ public class Batalla extends JPanel {
 		add(sumar2);
 
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setText(ma);
+		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_1.setBounds(322, 263, 96, 46);
 		add(textField_1);
 		textField_1.setColumns(10);
 
 		textField_2 = new JTextField();
+		textField_2.setEditable(false);
 		textField_2.setText(md);
+		textField_2.setHorizontalAlignment(SwingConstants.CENTER);
 		textField_2.setColumns(10);
 		textField_2.setBounds(572, 263, 96, 46);
 		add(textField_2);
+		
+		atk = new JSlider();
+		atk.setMaximum(50);
+
+		atk.setValue(0);
+		atk.setBounds(266, 338, 200, 26);
+
+		def = new JSlider();
+		def.setMaximum(50);
+
+		def.setValue(0);
+		def.setBounds(522, 340, 200, 26);
 
 		atack = new JButton("atac");
-		atack.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-				
-			}
-		});
 		atack.setBounds(416, 409, 163, 76);
 		add(atack);
 
@@ -145,6 +159,7 @@ public class Batalla extends JPanel {
 		String nombre;
 		String a;
 		if (cantidad == 3) {
+			
 			tipo = tipos[0];
 			nombre = nom[0];
 			Equipo equipo1 = new Equipo(tipo, nombre);
@@ -156,20 +171,14 @@ public class Batalla extends JPanel {
 			Equipo equipo3 = new Equipo(tipo, nombre);
 			String nob[] = {nom[0],nom[1],nom[2]};
 			this.characters = nob;
+			textField.setText(nom[0]);
 			comboBox.setModel(new DefaultComboBoxModel(characters));
 			this.misilesAtck = Integer.parseInt(ma);
 			this.misilesDef = Integer.parseInt(md);
 			atack.addActionListener(new ActionListener() {
 				
 				public void actionPerformed(ActionEvent e) {
-					if(!("01020304050607080901234567890").contains(textField_1.getText())) {
-						JOptionPane.showInternalMessageDialog(null, "NO ES UN NUMERO O NO ES VALIDO", "Error de misiles", 0);
-						textField_1.setText("0");
-					}
-					if(!("01020304050607080901234567890").contains(textField_2.getText())) {
-						JOptionPane.showInternalMessageDialog(null, "NO ES UN NUMERO O NO ES VALIDO", "Error de misiles", 0);
-						textField_2.setText("0");
-					}
+					
 					int num = Integer.valueOf(textField_1.getText());
 					int num2 = Integer.valueOf(textField_2.getText());
 					int num4 = num + num2;
@@ -179,14 +188,14 @@ public class Batalla extends JPanel {
 					int mD = 0; 
 					mD=num2 + mD;
 					int cont=0;
-					int equipo=1;
 					num3 = num3-num4;
 					String equipoa = "";
 					String s;
-					String s1 =	s = (String) comboBox.getSelectedItem();
-					
-					if(s1.equals(nom[equipo-1])) {
+					String s1;
+					s1 =s = (String) comboBox.getSelectedItem();
+					if(s.equals(nom[equipo])) {
 						JOptionPane.showInternalMessageDialog(null, "TE ESTAS ELIGIENDO A TI MISMO", "Error de equipo", 0);
+						cont++;
 					}
 
 					if(num4 > 50 || textField_1.getText() == null) {
@@ -195,42 +204,56 @@ public class Batalla extends JPanel {
 					
 					if(num4 < 50 && tipos[equipo] != "Donky Kong") {
 						JOptionPane.showInternalMessageDialog(null, "AUN TE QUEDAN MISILES", "Error de misiles", 0);
-						
 					}
 					if(num4 < 20 && tipos[equipo] == "Donky Kong") {
 						JOptionPane.showInternalMessageDialog(null, "AUN TE QUEDAN MISILES", "Error de misiles", 0);
-						
 					}
 					
-					if(num4 < 51 && num4 >0 && num3 == 0) {
+					if(num4 < 51 && num4 >0 && num3 == 0 && cont == 0) {
 						JOptionPane.showInternalMessageDialog(null, "Hola", "Error de misiles", 0);
-						cont++;
 						textField_cohete.setText(Integer.toString(50));
 						if(tipos[equipo] == "Donky Kong") {
 							textField_cohete.setText(Integer.toString(20));
 						}
 						textField_1.setText("0");
 						textField_2.setText("0");
-						
-						if(equipo ==1 ) {
+						def.setValue(0);
+						atk.setValue(0);
+						if(equipo ==0 ) {
+							textField.setText(nom[1]);
+							equipoa = s = (String) comboBox.getSelectedItem();
 							int equipo1ma = mA;
 							int equipo1md = mD;
 							String equipo1Obj = equipoa;
+							
+							
 						}
-						equipo++;
+						if(equipo==1) {
+							textField.setText(nom[2]);
+							equipoa=s = (String) comboBox.getSelectedItem();
+							int equipo2ma = mA;
+							int equipo2md = mD;
+							String equipo1Obj = equipoa;
+							
+						}
+						if(equipo==2) {
+							JOptionPane.showInternalMessageDialog(null, "Adios", "Error de misiles", 0);
+							equipoa=s1;
+							int equipo3ma = mA;
+							int equipo3md = mD;
+							String equipo1Obj = equipoa;
+							
+						}
+						equipo=equipo+1;
 					}
-					if(num4 < 51 && num4 >0 && cont == 0) {
-						JOptionPane.showInternalMessageDialog(null, "H", "Error de misiles", 0);
-						textField_cohete.setText(Integer.toString(num3));
-						
-					}
-					
+					cont = 0;
 				}});	
 			restar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					ma = textField_1.getText();
 					misilesAtck= Integer.valueOf(ma);
 					misilesAtck--;
+					atk.setValue(misilesAtck);
 					ma = Integer.toString(misilesAtck);
 					textField_1.setText(ma);
 					
@@ -240,6 +263,7 @@ public class Batalla extends JPanel {
 					ma = textField_1.getText();
 					misilesAtck= Integer.valueOf(ma);
 					misilesAtck++;
+					atk.setValue(misilesAtck);
 					ma = Integer.toString(misilesAtck);
 					textField_1.setText(ma);
 }});
@@ -248,6 +272,7 @@ public class Batalla extends JPanel {
 					md = textField_2.getText();
 					misilesDef= Integer.valueOf(md);
 					misilesDef--;
+					def.setValue(misilesDef);
 					md = Integer.toString(misilesDef);
 					textField_2.setText(md);
 }});
@@ -256,9 +281,20 @@ public class Batalla extends JPanel {
 					md = textField_2.getText();
 					misilesDef= Integer.valueOf(md);
 					misilesDef++;
+					def.setValue(misilesDef);
 					md = Integer.toString(misilesDef);
 					textField_2.setText(md);
 }});
+			atk.addChangeListener(new ChangeListener(){  public void stateChanged(ChangeEvent e) {
+				textField_1.setText(String.valueOf(atk.getValue()));
+				           }
+				       });
+				add(atk);
+				def.addChangeListener(new ChangeListener(){ public void stateChanged(ChangeEvent e) {
+					textField_2.setText(String.valueOf(def.getValue()));
+				           }
+				       });
+				add(def);
 		}	
 		if (cantidad == 4) {
 			tipo = tipos[0];
@@ -275,6 +311,130 @@ public class Batalla extends JPanel {
 			Equipo equipo4 = new Equipo(tipo, nombre);
 			String nob[] = {nom[0],nom[1],nom[2], nom[3]};
 			this.characters = nob;
+			textField.setText(nom[0]);
+			comboBox.setModel(new DefaultComboBoxModel(characters));
+			this.misilesAtck = Integer.parseInt(ma);
+			this.misilesDef = Integer.parseInt(md);
+			atack.addActionListener(new ActionListener() {
+				
+				public void actionPerformed(ActionEvent e) {
+					
+					int num = Integer.valueOf(textField_1.getText());
+					int num2 = Integer.valueOf(textField_2.getText());
+					int num4 = num + num2;
+					int num3 = Integer.valueOf(textField_cohete.getText());
+					int mA = 0; 
+					mA=num + mA;
+					int mD = 0; 
+					mD=num2 + mD;
+					int cont=0;
+					num3 = num3-num4;
+					String equipoa = "";
+					String s;
+					String s1;
+					s1 =s = (String) comboBox.getSelectedItem();
+					if(s.equals(nom[equipo])) {
+						JOptionPane.showInternalMessageDialog(null, "TE ESTAS ELIGIENDO A TI MISMO", "Error de equipo", 0);
+						cont++;
+					}
+
+					if(num4 > 50 || textField_1.getText() == null) {
+						JOptionPane.showInternalMessageDialog(null, "EL MAXIMO DE MISILES ES DE 50", "Error de misiles", 0);
+					}
+					
+					if(num4 < 50 && tipos[equipo] != "Donky Kong") {
+						JOptionPane.showInternalMessageDialog(null, "AUN TE QUEDAN MISILES", "Error de misiles", 0);
+					}
+					if(num4 < 20 && tipos[equipo] == "Donky Kong") {
+						JOptionPane.showInternalMessageDialog(null, "AUN TE QUEDAN MISILES", "Error de misiles", 0);
+					}
+					
+					if(num4 < 51 && num4 >0 && num3 == 0 && cont == 0) {
+						JOptionPane.showInternalMessageDialog(null, "Hola", "Error de misiles", 0);
+						textField_cohete.setText(Integer.toString(50));
+						if(tipos[equipo] == "Donky Kong") {
+							textField_cohete.setText(Integer.toString(20));
+						}
+						textField_1.setText("0");
+						textField_2.setText("0");
+						def.setValue(0);
+						atk.setValue(0);
+						if(equipo ==0 ) {
+							textField.setText(nom[1]);
+							equipoa = s = (String) comboBox.getSelectedItem();
+							int equipo1ma = mA;
+							int equipo1md = mD;
+							String equipo1Obj = equipoa;
+							
+							
+						}
+						if(equipo==1) {
+							textField.setText(nom[2]);
+							equipoa=s = (String) comboBox.getSelectedItem();
+							int equipo2ma = mA;
+							int equipo2md = mD;
+							String equipo1Obj = equipoa;
+							
+						}
+						if(equipo==2) {
+							JOptionPane.showInternalMessageDialog(null, "Adios", "Error de misiles", 0);
+							equipoa=s1;
+							int equipo3ma = mA;
+							int equipo3md = mD;
+							String equipo1Obj = equipoa;
+							
+						}
+						equipo=equipo+1;
+					}
+					cont = 0;
+				}});	
+			restar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ma = textField_1.getText();
+					misilesAtck= Integer.valueOf(ma);
+					misilesAtck--;
+					atk.setValue(misilesAtck);
+					ma = Integer.toString(misilesAtck);
+					textField_1.setText(ma);
+					
+}});
+			sumar2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					ma = textField_1.getText();
+					misilesAtck= Integer.valueOf(ma);
+					misilesAtck++;
+					atk.setValue(misilesAtck);
+					ma = Integer.toString(misilesAtck);
+					textField_1.setText(ma);
+}});
+			restar2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					md = textField_2.getText();
+					misilesDef= Integer.valueOf(md);
+					misilesDef--;
+					def.setValue(misilesDef);
+					md = Integer.toString(misilesDef);
+					textField_2.setText(md);
+}});
+			sumar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					md = textField_2.getText();
+					misilesDef= Integer.valueOf(md);
+					misilesDef++;
+					def.setValue(misilesDef);
+					md = Integer.toString(misilesDef);
+					textField_2.setText(md);
+}});
+			atk.addChangeListener(new ChangeListener(){  public void stateChanged(ChangeEvent e) {
+				textField_1.setText(String.valueOf(atk.getValue()));
+				           }
+				       });
+				add(atk);
+				def.addChangeListener(new ChangeListener(){ public void stateChanged(ChangeEvent e) {
+					textField_2.setText(String.valueOf(def.getValue()));
+				           }
+				       });
+				add(def);
 		}
 		if (cantidad == 5) {
 			tipo = tipos[0];
