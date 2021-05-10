@@ -2,58 +2,83 @@
 public class Equipo{
 
 	String Nombre;
-	int hp, misil;
+	static int hp, misil;
 	String tipo;
 	
 	public Equipo(String tipo, String nom){
 		
 		this.Nombre=nom;
 		this.tipo = tipo;
-		
+	}
+	public static int gethptipo(String tipo) {
 		if(tipo.equals("Stickman")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		if(tipo.equals("Link")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		if(tipo.equals("Link")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		if(tipo.equals("Sonic")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		if(tipo.equals("Ratchet & Clank")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
-		if(tipo.equals("Donky Kong")) {
-			this.hp = 400;
-			this.misil = 20;
+		if(tipo.equals("Donkey Kong")) {
+			hp = 400;
 		}
 		if(tipo.equals("Clank")) {
-			this.hp = 50;
-			this.misil = 20;
+			hp = 50;
 		}
 		if(tipo.equals("Mario")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		if(tipo.equals("Pikachu")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		if(tipo.equals("Sub-Zero")) {
-			this.hp = 200;
-			this.misil = 50;
+			hp = 200;
 		}
 		
+		return hp;
 	}
 	
-	
+	public static int getmisilestipo(String tipo) {
+		if(tipo.equals("Stickman")) {
+			misil = 50;
+		}
+		if(tipo.equals("Link")) {
+			misil = 50;
+		}
+		if(tipo.equals("Link")) {
+			misil = 50;
+		}
+		if(tipo.equals("Sonic")) {
+			misil = 50;
+		}
+		if(tipo.equals("Ratchet & Clank")) {
+			misil = 50;
+		}
+		if(tipo.equals("Donkey Kong")) {
+			misil = 20;
+		}
+		if(tipo.equals("Clank")) {
+			misil = 20;
+		}
+		if(tipo.equals("Mario")) {
+			misil = 50;
+		}
+		if(tipo.equals("Pikachu")) {
+			misil = 50;
+		}
+		if(tipo.equals("Sub-Zero")) {
+			misil = 50;
+		}
+		
+		return misil;
+	}
 	
 	
 	
@@ -71,6 +96,12 @@ public class Equipo{
 		return this.Nombre;
 	}
 	
+	public int gethp() {
+		
+		
+		
+		return 0;
+	}
 
 	
 	
