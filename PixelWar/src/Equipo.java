@@ -1,4 +1,3 @@
-
 public class Equipo{
 
 	String Nombre;
@@ -9,6 +8,8 @@ public class Equipo{
 		
 		this.Nombre=nom;
 		this.tipo = tipo;
+		this.hp=gethptipo(tipo);
+		this.misil=getmisilestipo(tipo);
 	}
 	public static int gethptipo(String tipo) {
 		if(tipo.equals("Stickman")) {
@@ -69,7 +70,7 @@ public class Equipo{
 		}
 		if(tipo.equals("Mario")) {
 			misil = 50;
-		}
+		}	
 		if(tipo.equals("Pikachu")) {
 			misil = 50;
 		}
@@ -82,14 +83,28 @@ public class Equipo{
 	
 	
 	
-	public void recibirmisiles(int misilesE, int misilesD) {
+	public int recibirmisiles(String nome, int cantidad, String nom, int hp, int misilesE, int misilesD) {
+	int cont=0;
 	int vida;
+	String jugador[] = new String[cantidad];
+	jugador[cont] = nom; 
+	String jugadorO[] = new String[cantidad];
+	jugadorO[cont] = nome; 		
 	
-		misilesD = misilesD/2;
-		
+	if(cont == cantidad) {
+	for(int i = 0; i < cantidad;i++) {
+		for(int y = 0; y < cantidad;y++) {
+		if(jugador[i] == jugadorO[y]) {
+			
+		}
+		}
+	}
+	}
 		vida = misilesE - misilesD;
 		
-		this.hp = this.hp-vida;
+		hp = hp-vida;
+		vida=0;
+		return hp;	
 	}
 	
 	public String getNombre(){
