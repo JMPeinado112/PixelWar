@@ -37,6 +37,7 @@ public class Batalla extends JPanel {
 	int equipo = 0;
 	ArrayList<String> resumen = new ArrayList<String>();
 	int nmisiles;
+	ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 
 	public Batalla(int cantidad, String tipos[], String nom[]) {
 		setBounds(100, 100, 1100, 700);
@@ -170,6 +171,9 @@ public class Batalla extends JPanel {
 			tipo = tipos[2];
 			nombre = nom[2];
 			Equipo equipo3 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
 		}
 		if (cantidad == 4) {
 			tipo = tipos[0];
@@ -184,6 +188,10 @@ public class Batalla extends JPanel {
 			tipo = tipos[3];
 			nombre = nom[3];
 			Equipo equipo4 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
 		}
 		if (cantidad == 5) {
 			tipo = tipos[0];
@@ -201,6 +209,11 @@ public class Batalla extends JPanel {
 			tipo = tipos[4];
 			nombre = nom[4];
 			Equipo equipo5 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
+			equipos.add(equipo5);
 		}
 		if (cantidad == 6) {
 			tipo = tipos[0];
@@ -221,6 +234,12 @@ public class Batalla extends JPanel {
 			tipo = tipos[5];
 			nombre = nom[5];
 			Equipo equipo6 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
+			equipos.add(equipo5);
+			equipos.add(equipo6);
 		}
 		if (cantidad == 7) {
 			tipo = tipos[0];
@@ -244,6 +263,13 @@ public class Batalla extends JPanel {
 			tipo = tipos[6];
 			nombre = nom[6];
 			Equipo equipo7 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
+			equipos.add(equipo5);
+			equipos.add(equipo6);
+			equipos.add(equipo7);
 		}
 		if (cantidad == 8) {
 			tipo = tipos[0];
@@ -270,6 +296,14 @@ public class Batalla extends JPanel {
 			tipo = tipos[7];
 			nombre = nom[7];
 			Equipo equipo8 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
+			equipos.add(equipo5);
+			equipos.add(equipo6);
+			equipos.add(equipo7);
+			equipos.add(equipo8);
 		}
 		if (cantidad == 9) {
 
@@ -300,6 +334,15 @@ public class Batalla extends JPanel {
 			tipo = tipos[8];
 			nombre = nom[8];
 			Equipo equipo9 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
+			equipos.add(equipo5);
+			equipos.add(equipo6);
+			equipos.add(equipo7);
+			equipos.add(equipo8);
+			equipos.add(equipo9);
 		}
 		if (cantidad == 10) {
 
@@ -333,6 +376,16 @@ public class Batalla extends JPanel {
 			tipo = tipos[9];
 			nombre = nom[9];
 			Equipo equipo10 = new Equipo(tipo, nombre);
+			equipos.add(equipo1);
+			equipos.add(equipo2);
+			equipos.add(equipo3);
+			equipos.add(equipo4);
+			equipos.add(equipo5);
+			equipos.add(equipo6);
+			equipos.add(equipo7);
+			equipos.add(equipo8);
+			equipos.add(equipo9);
+			equipos.add(equipo10);
 		}
 		this.characters = nom;
 		textField.setText(nom[0]);
@@ -383,17 +436,19 @@ public class Batalla extends JPanel {
 					equipoa = s = (String) comboBox.getSelectedItem();
 					int equipoma = mA;
 					int equipomd = mD;
+					int posicion = comboBox.getSelectedIndex();
 					String equipoObj = equipoa;
 					resumen.add(nom[equipo] + " a atacado con " + equipoma + " a " + equipoObj
 							+ " y se ha defendido con " + equipomd + "\n");
 					// aqui empieza el sistema de daño
-
+					atacar(posicion, equipoma, equipomd, equipo, cantidad);
 					// Aqui acaba
 
 					equipo = equipo + 1;
 					if (equipo == cantidad) {
 						JOptionPane.showInternalMessageDialog(null, "Adios", "Error de misiles", 0);
 						finalizar(cantidad, tipos, nom);
+						
 					}
 					if (equipo < cantidad) {
 						textField.setText(nom[equipo]);
@@ -470,5 +525,12 @@ public class Batalla extends JPanel {
 		Marco.getContentPane().add(new FinalRonda(resumen, cantidad, tipos, nom));
 		Marco.setVisible(true);
 
+	}
+	public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad) {
+		equipos.get(tu).misila = equipoma;
+		equipos.get(tu).misild = equipomd;
+		if(equipo == cantidad) {
+			
+		}
 	}
 }
