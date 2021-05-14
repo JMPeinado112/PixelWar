@@ -3,6 +3,7 @@ public class Equipo{
 	String Nombre;
 	static int hp, misil;
 	String tipo;
+	int misila, misild;
 	
 	public Equipo(String tipo, String nom){
 		
