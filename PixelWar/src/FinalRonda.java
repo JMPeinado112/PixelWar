@@ -28,6 +28,7 @@ public class FinalRonda extends JPanel implements ActionListener{
 	private int cantidad;
 	private String tipos[];
 	private String nom[];
+	static int contador = 1;
 
 	public FinalRonda(ArrayList resumen, int cantidad, String tipos[], String nom[]) {
 		this.cantidad = cantidad;
@@ -49,7 +50,7 @@ public class FinalRonda extends JPanel implements ActionListener{
 			
 			textField = new JTextField();
 			textField.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD, 15));
-			textField.setText(resumen.toString());
+			textField.setText(resumen.toString() + "ronda : " + contador);
 			
 			textField.setBounds(0, 131, 1044, 376);
 			textField.setEditable(false); // set textArea non-editable
