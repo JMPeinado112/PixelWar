@@ -527,10 +527,16 @@ public class Batalla extends JPanel {
 
 	}
 	public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad) {
+		int cont = 0;
+		int previda [] = new int[cantidad];
+		previda[cont] = equipos.get(tu).hp;
 		equipos.get(tu).misila = equipoma;
 		equipos.get(tu).misild = equipomd;
+		equipos.get(tu).hp = equipos.get(tu).hp + equipomd;
+		equipos.get(enemigo).hp = equipos.get(enemigo).hp - equipoma;
 		if(equipo == cantidad) {
 			
 		}
+		cont++;
 	}
 }
