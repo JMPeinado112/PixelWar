@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.DefaultComboBoxModel;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 
@@ -38,6 +39,7 @@ public class Batalla extends JPanel {
 	ArrayList<String> resumen = new ArrayList<String>();
 	int nmisiles;
 	ArrayList<Equipo> equipos = new ArrayList<Equipo>();
+	Random random  =new Random();
 
 	public Batalla(int cantidad, String tipos[], String nom[]) {
 		setBounds(100, 100, 1100, 700);
@@ -92,13 +94,13 @@ public class Batalla extends JPanel {
 		add(textField_2);
 
 		atk = new JSlider();
-		atk.setMaximum(50);
+		atk.setMaximum(Equipo.getmisilestipo(tipos[equipo]));
 
 		atk.setValue(0);
 		atk.setBounds(266, 338, 200, 26);
 
 		def = new JSlider();
-		def.setMaximum(50);
+		def.setMaximum(Equipo.getmisilestipo(tipos[equipo]));
 
 		def.setValue(0);
 		def.setBounds(522, 340, 200, 26);
@@ -397,7 +399,7 @@ public class Batalla extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 
 				int num = Integer.valueOf(textField_1.getText());
-				int num2 = Integer.valueOf(textField_2.getText());
+				int num2 = Integer.valueOf(textField_2.getText()) * 2;
 				int num4 = num + num2;
 				int num3 = Integer.valueOf(textField_cohete.getText());
 				int mA = 0;
@@ -417,7 +419,7 @@ public class Batalla extends JPanel {
 				}
 
 				if (num4 > nmisiles) {
-					JOptionPane.showInternalMessageDialog(null, "EL MAXIMO DE MISILES ES DE " + nmisiles,
+					JOptionPane.showInternalMessageDialog(null, "EL MAXIMO DE MISILES ES DE " + nmisiles + " Recuerda los misiles de defensa cuestan el doble",
 							"Error de misiles", 0);
 				}
 
@@ -432,7 +434,7 @@ public class Batalla extends JPanel {
 					textField_2.setText("0");
 					def.setValue(0);
 					atk.setValue(0);
-
+					
 					equipoa = s = (String) comboBox.getSelectedItem();
 					int equipoma = mA;
 					int equipomd = mD;
@@ -441,17 +443,18 @@ public class Batalla extends JPanel {
 					resumen.add(nom[equipo] + " a atacado con " + equipoma + " a " + equipoObj
 							+ " y se ha defendido con " + equipomd + "\n");
 					// aqui empieza el sistema de daño
-					atacar(posicion, equipoma, equipomd, equipo, cantidad);
+					atacar(posicion, equipoma, equipomd, equipo, cantidad, tipos[equipo]);
 					// Aqui acaba
 
 					equipo = equipo + 1;
 					if (equipo == cantidad) {
 						JOptionPane.showInternalMessageDialog(null, "Adios", "Error de misiles", 0);
 						finalizar(cantidad, tipos, nom);
-						
+						FinalRonda.contador++;
 					}
 					if (equipo < cantidad) {
 						textField.setText(nom[equipo]);
+						slider(tipos);
 					}
 
 					if (equipo < cantidad) {
@@ -526,17 +529,40 @@ public class Batalla extends JPanel {
 		Marco.setVisible(true);
 
 	}
-	public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad) {
+	public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad, String tipo) {
 		int cont = 0;
+		int equi[] = new int[cantidad];
 		int previda [] = new int[cantidad];
 		previda[cont] = equipos.get(tu).hp;
 		equipos.get(tu).misila = equipoma;
 		equipos.get(tu).misild = equipomd;
+		ataquesespeciales(tipo, tu);
 		equipos.get(tu).hp = equipos.get(tu).hp + equipomd;
 		equipos.get(enemigo).hp = equipos.get(enemigo).hp - equipoma;
+		
 		if(equipo == cantidad) {
+			for(int i = 0; i < cantidad; i++) {
+				if(equipos.get(equi[i]).hp > previda[i]) {
+					equipos.get(equi[i]).hp = previda[i];
+				}
+			}
 			
 		}
 		cont++;
+	}
+	public void ataquesespeciales(String tipo, int a) {
+		if(tipo.equals("Stickman")) {
+			
+		}
+		if(tipo.equals("Link")) {
+			int aleatorio = random.nextInt(100)+1;
+			if(aleatorio <= 15) {
+				equipos.get(a).misila = equipos.get(a).misila + 35;
+			}
+		}
+	}
+	public void slider(String tipos[]) {
+		atk.setMaximum(Equipo.getmisilestipo(tipos[equipo]));
+		def.setMaximum(Equipo.getmisilestipo(tipos[equipo]));
 	}
 }
