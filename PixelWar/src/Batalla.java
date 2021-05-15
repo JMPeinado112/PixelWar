@@ -40,8 +40,13 @@ public class Batalla extends JPanel {
 	int nmisiles;
 	ArrayList<Equipo> equipos = new ArrayList<Equipo>();
 	Random random  =new Random();
+	int cantidades;
+	int sub[];
 
 	public Batalla(int cantidad, String tipos[], String nom[]) {
+		cantidades = cantidad;
+		int subi [] = new int[cantidades];
+		sub = subi;
 		setBounds(100, 100, 1100, 700);
 		setLayout(null);
 		nmisiles = Equipo.getmisilestipo(tipos[equipo]);
@@ -532,15 +537,24 @@ public class Batalla extends JPanel {
 	public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad, String tipo) {
 		int cont = 0;
 		int equi[] = new int[cantidad];
+		int equiO[] = new int[cantidad];
 		int previda [] = new int[cantidad];
 		previda[cont] = equipos.get(tu).hp;
+		equi[cont] = tu;
+		equiO[cont] = enemigo;
 		equipos.get(tu).misila = equipoma;
 		equipos.get(tu).misild = equipomd;
-		ataquesespeciales(tipo, tu);
+		ataquesespeciales(tipo, tu, previda[tu], cantidad, enemigo);
 		equipos.get(tu).hp = equipos.get(tu).hp + equipomd;
 		equipos.get(enemigo).hp = equipos.get(enemigo).hp - equipoma;
 		
 		if(equipo == cantidad) {
+			for(int i = 0; i < cantidad; i++) {
+			if(sub[i] == equiO[i]+1 && sub[i] > 0) {
+				equipos.get(equiO[i]).misila = 0;
+				equipos.get(equiO[i]).misild = 0;
+			}
+			}
 			for(int i = 0; i < cantidad; i++) {
 				if(equipos.get(equi[i]).hp > previda[i]) {
 					equipos.get(equi[i]).hp = previda[i];
@@ -550,7 +564,7 @@ public class Batalla extends JPanel {
 		}
 		cont++;
 	}
-	public void ataquesespeciales(String tipo, int a) {
+	public void ataquesespeciales(String tipo, int a, int previda, int cantidad, int enemigo) {
 		if(tipo.equals("Stickman")) {
 			
 		}
@@ -558,6 +572,47 @@ public class Batalla extends JPanel {
 			int aleatorio = random.nextInt(100)+1;
 			if(aleatorio <= 15) {
 				equipos.get(a).misila = equipos.get(a).misila + 35;
+			}
+		}
+		if(tipo.equals("Sonic")) {
+			int aleatorio = random.nextInt(100)+1;
+			if(aleatorio <= 10) {
+				equipos.get(a).hp = previda;
+			}
+		}
+		if(tipo.equals("Goku")) {
+			int turno =FinalRonda.contador;
+			if(turno == 5) {
+				equipos.get(a).misila = equipos.get(a).misila + 25;
+				turno = 0;
+			}
+		}
+		if(tipo.equals("Creeper")) {
+			if(equipos.get(a).hp <= 80) {
+				
+				
+			}
+			
+		}
+		if(tipo.equals("Pikachu")) {
+			int aleatorio = random.nextInt(100)+1;
+			if(aleatorio <= 30) {
+				if(a-1 >= 0) {
+					equipos.get(a-1).hp = equipos.get(a-1).hp - (equipos.get(a).hp/2);
+				}
+				if(a+1 < cantidad) {
+					equipos.get(a+1).hp = equipos.get(a+1).hp - (equipos.get(a).hp/2);
+				}
+			}
+			
+		}
+		if(tipo.equals("Donkey Kong")) {
+			
+		}
+		if(tipo.equals("Sub-Zero")) {
+			int aleatorio = random.nextInt(100)+1;
+			if(aleatorio <= 10) {
+				sub[equipo]=enemigo+1;
 			}
 		}
 	}
