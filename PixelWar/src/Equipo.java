@@ -1,21 +1,21 @@
 public class Equipo{
 
-	String Nombre;
-	int hp, misil;
-	String tipo;
-	int misila, misild;
-	int contador = 0;
+	String Nombre; //Nombre del equipo
+	int hp, misil; //Vida y misiles del equipo
+	String tipo; //Tipo de personaje del equipo
+	int misila, misild; //eqnergia defensivas y ofensivas
 	
+	String foto;
 	public Equipo(String tipo, String nom){
 		
 		this.Nombre=nom;
 		this.tipo = tipo;
-		
+		foto = foto(tipo);
 			this.hp=gethptipo(tipo);
 			this.misil=getmisiltipo(tipo);
 		
 		
-		contador++;
+		
 	}
 	//se passa la vida de cada tipo a la batalla
 	public int gethptipo(String tipo) {
@@ -47,6 +47,9 @@ public class Equipo{
 			hp = 200;
 		}
 		if(tipo.equals("Sub-Zero")) {
+			hp = 200;
+		}
+		if(tipo.equals("Goku")) {
 			hp = 200;
 		}
 		
@@ -85,7 +88,9 @@ public class Equipo{
 		if(tipo.equals("Sub-Zero")) {
 			misiles = 50;
 		}
-		
+		if(tipo.equals("Goku")) {
+			misiles = 50;
+		}
 		return misiles;
 	}
 	public static int getmisilestipo(String tipo) {
@@ -118,6 +123,9 @@ public class Equipo{
 			misiles = 50;
 		}
 		if(tipo.equals("Sub-Zero")) {
+			misiles = 50;
+		}
+		if(tipo.equals("Goku")) {
 			misiles = 50;
 		}
 		
