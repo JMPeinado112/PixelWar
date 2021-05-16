@@ -527,9 +527,7 @@ public class Batalla extends JPanel {
 				String s1;
 				s1 = s = (String) comboBox.getSelectedItem();
 				if(equipos.size() == 1) {
-					equipo = 0;
-					JOptionPane.showInternalMessageDialog(null, "ad " + nmisiles + " ad",
-							"Error de energia", 0);
+					ganador();
 				}
 				if (s.equals(equipos.get(equipo).Nombre)) {
 					JOptionPane.showInternalMessageDialog(null, "TE ESTAS ELIGIENDO A TI MISMO", "Error de equipo", 0);
@@ -582,14 +580,14 @@ public class Batalla extends JPanel {
 						
 					}
 					
-					// aqui empieza el sistema de daño
+					// aqui empieza el sistema de daÃ±o
 					atacar(posicion, equipoma, equipomd, equipo, equipos.size(), tipos[equipo], previda);
 					// Aqui acaba
 					vidas(cantidad); //Actualizar las vidas
 					equipo++;
 					b++;
 					ronda++;
-					if (ronda >= equipos.size()+c) {
+					if (equipo >= equipos.size()) {
 						finalizar(equipos.size(), tipos, nom);
 						c=0;
 					}
@@ -743,7 +741,14 @@ public class Batalla extends JPanel {
 			ataquesespeciales(tipo, tu, previda[tu], cantidad, enemigo);
 			
 			equipos.get(tu).hp = equipos.get(tu).hp + (equipomd/2);
-			equipos.get(enemigo).hp = equipos.get(enemigo).hp - equipoma;
+			equipos.get(enemigo).hp = equipos.get(enemigo).hp - equipos.get(tu).misila;
+			if(equipos.get(enemigo).tipo.equals("Sonic")) {
+				int aleatorio = r.nextInt(100)+1;
+				if(aleatorio <= 30) {
+					equipos.get(enemigo).hp = equipos.get(enemigo).hp + equipos.get(tu).misila;
+				}
+				
+			}
 			if(equipos.get(enemigo).hp <= 0) {
 				muerte++;
 				equipos.get(enemigo).hp = 0;
@@ -826,11 +831,14 @@ public class Batalla extends JPanel {
 				equipos.get(a).misila = equipos.get(a).misila + 35;
 			}
 		}
-		if(tipo.equals("Sonic")) {
+		if(tipo.equals("Mario")) {
 			int aleatorio = r.nextInt(100)+1;
 			if(aleatorio <= 10) {
-				equipos.get(a).hp = previda;
+				equipos.get(a).misild = equipos.get(a).misild + 20;
 			}
+		}
+		if(tipo.equals("Sonic")) {
+			
 		}
 		if(tipo.equals("Goku")) {
 			int turno =FinalRonda.contador;
@@ -840,20 +848,15 @@ public class Batalla extends JPanel {
 			}
 		}
 		if(tipo.equals("Creeper")) {
-			if(equipos.get(a).hp <= 80) {
-
-
-			}
-
 		}
 		if(tipo.equals("Pikachu")) {
 			int aleatorio = r.nextInt(100)+1;
 			if(aleatorio <= 30) {
 				if(a-1 >= 0) {
-					equipos.get(a-1).hp = equipos.get(a-1).hp - (equipos.get(a).hp/2);
+					equipos.get(a-1).hp = equipos.get(a-1).hp - (equipos.get(a).misila/2);
 				}
 				if(a+1 < cantidad) {
-					equipos.get(a+1).hp = equipos.get(a+1).hp - (equipos.get(a).hp/2);
+					equipos.get(a+1).hp = equipos.get(a+1).hp - (equipos.get(a).misila/2);
 				}
 			}
 
@@ -864,7 +867,7 @@ public class Batalla extends JPanel {
 		if(tipo.equals("Sub-Zero")) {
 			int aleatorio = r.nextInt(100)+1;
 			if(aleatorio <= 10) {
-				
+				equipos.get(a).misila = equipos.get(a).misila + 25;
 			}
 
 		}
@@ -876,15 +879,15 @@ public class Batalla extends JPanel {
 	public  String resum(int mA, int mD, String nom[], String equipoObj){
 		String resum = "";
 		if(mA == 0) {
-			resum = nom[equipo]+" no ha atacado y se ha defendido con "+mD + " de poder de escudo\n";	
+			resum = equipos.get(equipo).Nombre+" no ha atacado y se ha defendido con "+mD + " de poder de escudo\n";	
 			return resum;
 		}
 		if(mD == 0) {
-			resum = nom[equipo]+" ha atacado con " + mA + " de poder de ataque a " + equipoObj +" y no se ha defendido\n";
+			resum = equipos.get(equipo).Nombre+" ha atacado con " + mA + " de poder de ataque a " + equipoObj +" y no se ha defendido\n";
 			return resum;
 		}
 		else {
-			resum = nom[equipo]+" ha atacado con " + mA + " de poder de ataque a " + equipoObj +" y se ha defendido con "+mD + " de poder de escudo\n";
+			resum = equipos.get(equipo).Nombre+" ha atacado con " + mA + " de poder de ataque a " + equipoObj +" y se ha defendido con "+mD + " de poder de escudo\n";
 			return resum;
 		}
 
@@ -968,4 +971,10 @@ textField_20.setText(equipos.get(8).hp +" hp");
 textField_22.setText(equipos.get(9).hp +" hp");
 }
 }
+	public void ganador() {
+		JFrame Marco = (JFrame)SwingUtilities.getWindowAncestor(this);
+		Marco.remove(this);
+		Marco.getContentPane().add(new Ganador(equipos.get(0).foto));
+		Marco.setVisible(true);	
+	}
 }
