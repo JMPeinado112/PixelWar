@@ -81,8 +81,12 @@ public class Batalla extends JPanel {
 	private JLabel lblNewLabel_11;
 	private JTextField j10;
 	private JTextField textField_22;
-
+	int muerte=1;
+	int b = 1;
+	int ronda = 0;
+	int c = 0;
 	public Batalla(int cantidad, String tipos[], String nom[], ArrayList <Equipo> equip) {
+		int previda[] = new int[cantidad];
 		equipos = equip;
 		int subi [] = new int[cantidades];
 		sub = subi;
@@ -173,7 +177,7 @@ public class Batalla extends JPanel {
 		atk.setBounds(266, 338, 200, 26);
 
 		def = new JSlider();
-		def.setMaximum(Equipo.getmisilestipo(tipos[equipo]));
+		def.setMaximum(Equipo.getmisilestipo(tipos[equipo])/2);
 		def.setOpaque(false); 
 		def.setValue(0);
 		def.setBounds(522, 340, 200, 26);
@@ -246,15 +250,14 @@ public class Batalla extends JPanel {
 		String a;
 
 //creacion de personajes en la batalla
-		for (int i = 0; i < cantidad+1; i++) {
+		for (int i = 0; i < equipos.size()+1; i++) {
 
 			if (i == 1) {
-			
-				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(tipos[0])));//pasa la imagen correspondida desde equipos
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(0).tipo)));//pasa la imagen correspondida desde equipos
 				lblNewLabel_2.setBounds(816, 79, 40, 40);
 				add(lblNewLabel_2);
 
-				j1 = new JTextField(nom[0]);//pasa el nombre correspondida desde equipos
+				j1 = new JTextField(equipos.get(0).Nombre);//pasa el nombre correspondida desde equipos
 				j1.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j1.setBounds(866, 78, 96, 20);
 				j1.setOpaque(false);
@@ -271,16 +274,13 @@ public class Batalla extends JPanel {
 				textField_4.setBounds(866, 109, 62, 22);
 				add(textField_4);
 
-			}else if (i == 2) {
-				tipo = tipos[1];
-				nombre = nom[1];
-				Equipo equipo2 = new Equipo(tipo, nombre);
-				equipos.add(equipo2);
-				lblNewLabel_3 = new JLabel(new ImageIcon(Equipo.cara(tipos[1])));
-				lblNewLabel_3.setBounds(944, 133, 40, 40);
-				add(lblNewLabel_3);
+			}if (i == 2) {
+				
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(1).tipo)));
+				lblNewLabel_2.setBounds(944, 133, 40, 40);
+				add(lblNewLabel_2);
 
-				j2 = new JTextField(nom[1]);
+				j2 = new JTextField(equipos.get(1).Nombre);
 				j2.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j2.setOpaque(false);
 				j2.setBorder(null);
@@ -297,17 +297,15 @@ public class Batalla extends JPanel {
 				textField_6.setBounds(994, 163, 62, 22);
 				add(textField_6);
 
-			}else if (i == 3) {
+			}if (i == 3) {
 
-				tipo = tipos[2];
-				nombre = nom[2];
-				Equipo equipo3 = new Equipo(tipo, nombre);
-				equipos.add(equipo3);
-				lblNewLabel_4 =new JLabel(new ImageIcon(Equipo.cara(tipos[2])));
-				lblNewLabel_4.setBounds(816, 185, 40, 40);
-				add(lblNewLabel_4);
+				
+				
+				lblNewLabel_2 =new JLabel(new ImageIcon(Equipo.cara(equipos.get(2).tipo)));
+				lblNewLabel_2.setBounds(816, 185, 40, 40);
+				add(lblNewLabel_2);
 
-				j3 = new JTextField(nom[2]);
+				j3 = new JTextField(equipos.get(2).Nombre);
 				j3.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j3.setOpaque(false);
 				j3.setBorder(null);
@@ -325,17 +323,13 @@ public class Batalla extends JPanel {
 				add(textField_8);
 
 
-			}else if (i == 4) {
+			}if (i == 4) {
 
-				tipo = tipos[3];
-				nombre = nom[3];
-				Equipo equipo4 = new Equipo(tipo, nombre);
-				equipos.add(equipo4);
-				lblNewLabel_5 = new JLabel(new ImageIcon(Equipo.cara(tipos[3])));
-				lblNewLabel_5.setBounds(944, 237, 40, 40);
-				add(lblNewLabel_5);
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(3).tipo)));
+				lblNewLabel_2.setBounds(944, 237, 40, 40);
+				add(lblNewLabel_2);
 
-				j4 = new JTextField(nom[3]);
+				j4 = new JTextField(equipos.get(3).Nombre);
 				j4.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j4.setOpaque(false);
 				j4.setBorder(null);
@@ -354,15 +348,12 @@ public class Batalla extends JPanel {
 			}
 			if (i == 5) {
 
-				tipo = tipos[4];
-				nombre = nom[4];
-				Equipo equipo5 = new Equipo(tipo, nombre);
-				equipos.add(equipo5);
-				lblNewLabel_6 = new JLabel(new ImageIcon(Equipo.cara(tipos[4])));
-				lblNewLabel_6.setBounds(816, 289, 40, 40);
-				add(lblNewLabel_6);
+				
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(4).tipo)));
+				lblNewLabel_2.setBounds(816, 289, 40, 40);
+				add(lblNewLabel_2);
 
-				j5 = new JTextField(nom[4]);
+				j5 = new JTextField(equipos.get(4).Nombre);
 				j5.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j5.setOpaque(false);
 				j5.setBorder(null);
@@ -383,15 +374,12 @@ public class Batalla extends JPanel {
 			}
 			if (i == 6) {
 
-				tipo = tipos[5];
-				nombre = nom[5];
-				Equipo equipo6 = new Equipo(tipo, nombre);
-				equipos.add(equipo6);
-				lblNewLabel_7 = new JLabel(new ImageIcon(Equipo.cara(tipos[5])));
-				lblNewLabel_7.setBounds(944, 331, 40, 40);
-				add(lblNewLabel_7);
+				
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(5).tipo)));
+				lblNewLabel_2.setBounds(944, 331, 40, 40);
+				add(lblNewLabel_2);
 
-				j6 = new JTextField(equipo6.hp);
+				j6 = new JTextField(equipos.get(5).Nombre);
 				j6.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j6.setOpaque(false);
 				j6.setBorder(null);
@@ -411,15 +399,12 @@ public class Batalla extends JPanel {
 			if (i == 7) {
 
 
-				tipo = tipos[6];
-				nombre = nom[6];
-				Equipo equipo7 = new Equipo(tipo, nombre);
-				equipos.add(equipo7);
-				lblNewLabel_8 = new JLabel(new ImageIcon(Equipo.cara(tipos[6])));
-				lblNewLabel_8.setBounds(816, 394, 40, 40);
-				add(lblNewLabel_8);
+				
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(6).tipo)));
+				lblNewLabel_2.setBounds(816, 394, 40, 40);
+				add(lblNewLabel_2);
 
-				j7 = new JTextField(nom[6]);
+				j7 = new JTextField(equipos.get(6).Nombre);
 				j7.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j7.setOpaque(false);
 				j7.setBorder(null);
@@ -440,15 +425,12 @@ public class Batalla extends JPanel {
 			if (i == 8) {
 
 
-				tipo = tipos[7];
-				nombre = nom[7];
-				Equipo equipo8 = new Equipo(tipo, nombre);
-				equipos.add(equipo8);
-				lblNewLabel_9 = new JLabel(new ImageIcon(Equipo.cara(tipos[7])));
-				lblNewLabel_9.setBounds(944, 436, 40, 40);
-				add(lblNewLabel_9);
+				
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(7).tipo)));
+				lblNewLabel_2.setBounds(944, 436, 40, 40);
+				add(lblNewLabel_2);
 
-				j8 = new JTextField(nom[7]);
+				j8 = new JTextField(equipos.get(7).Nombre);
 				j8.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j8.setOpaque(false);
 				j8.setBorder(null);
@@ -468,15 +450,12 @@ public class Batalla extends JPanel {
 			if (i == 9) {
 
 
-				tipo = tipos[8];
-				nombre = nom[8];
-				Equipo equipo9 = new Equipo(tipo, nombre);
-				equipos.add(equipo9);
-				lblNewLabel_10 = new JLabel(new ImageIcon(Equipo.cara(tipos[8])));
-				lblNewLabel_10.setBounds(816, 502, 40, 40);
-				add(lblNewLabel_10);
+				
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(8).tipo)));
+				lblNewLabel_2.setBounds(816, 502, 40, 40);
+				add(lblNewLabel_2);
 
-				j9 = new JTextField(nom[8]);
+				j9 = new JTextField(equipos.get(8).Nombre);
 				j9.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j9.setOpaque(false);
 				j9.setBorder(null);
@@ -496,15 +475,12 @@ public class Batalla extends JPanel {
 			if (i == 10) {
 
 
-				tipo = tipos[9];
-				nombre = nom[9];
-				Equipo equipo10 = new Equipo(tipo, nombre);
-				equipos.add(equipo10);
-				lblNewLabel_11 = new JLabel(new ImageIcon(Equipo.cara(tipos[9])));
-				lblNewLabel_11.setBounds(944, 553, 40, 40);
-				add(lblNewLabel_11);
 				
-				j10 = new JTextField(nom[9]);
+				lblNewLabel_2 = new JLabel(new ImageIcon(Equipo.cara(equipos.get(9).tipo)));
+				lblNewLabel_2.setBounds(944, 553, 40, 40);
+				add(lblNewLabel_2);
+				
+				j10 = new JTextField(equipos.get(9).Nombre);
 				j10.setFont(new Font("Trebuchet MS", Font.ITALIC | Font.BOLD, 15));
 				j10.setOpaque(false);
 				j10.setBorder(null);
@@ -523,8 +499,12 @@ public class Batalla extends JPanel {
 			}
 
 		}
-		this.characters = nom;
-		textField.setText(nom[0]);
+		String noms[] = new String[equipos.size()];
+		for(int i = 0; i < equipos.size(); i++) {
+			noms[i]= equipos.get(i).Nombre;
+		}
+		this.characters = noms;
+		textField.setText(equipos.get(equipo).Nombre);
 		comboBox.setModel(new DefaultComboBoxModel(characters));
 		this.misilesAtck = Integer.parseInt(ma);
 		this.misilesDef = Integer.parseInt(md);
@@ -546,24 +526,28 @@ public class Batalla extends JPanel {
 				String s;
 				String s1;
 				s1 = s = (String) comboBox.getSelectedItem();
-
-				if (s.equals(nom[equipo])) {
+				if(equipos.size() == 1) {
+					equipo = 0;
+					JOptionPane.showInternalMessageDialog(null, "ad " + nmisiles + " ad",
+							"Error de energia", 0);
+				}
+				if (s.equals(equipos.get(equipo).Nombre)) {
 					JOptionPane.showInternalMessageDialog(null, "TE ESTAS ELIGIENDO A TI MISMO", "Error de equipo", 0);
 					cont++;
 				}
 
 				if (num4 > nmisiles) {
-					JOptionPane.showInternalMessageDialog(null, "EL MAXIMO DE MISILES ES DE " + nmisiles + " Recuerda los misiles de defensa cuestan el doble",
-							"Error de misiles", 0);
+					JOptionPane.showInternalMessageDialog(null, "EL MAXIMO DE ENERGIA ES DE " + nmisiles + " Recuerda la energia curativa cuesta el doble",
+							"Error de energia", 0);
 				}
 
 				if (num4 < nmisiles) {
-					JOptionPane.showInternalMessageDialog(null, "AUN TE QUEDAN MISILES", "Error de misiles", 0);
+					JOptionPane.showInternalMessageDialog(null, "AUN TE QUEDA ENERGIA", "Error de energia", 0);
 				}
 
 				if (num4 < nmisiles + 1 && num4 > 0 && num3 == 0 && cont == 0) {
 
-
+					
 					textField_1.setText("0");
 					textField_2.setText("0");
 					def.setValue(0);
@@ -573,46 +557,71 @@ public class Batalla extends JPanel {
 					int equipoma = mA;
 					int equipomd = mD;
 					int posicion = comboBox.getSelectedIndex();
-
+			
+					if(equipos.get(posicion).hp <= 0) {
+						
+						equipos.get(posicion).hp = 0;
+						equipos.remove(posicion);
+						String noms[] = new String[equipos.size()];
+						for(int i = 0; i < equipos.size(); i++) {
+							noms[i]= equipos.get(i).Nombre;
+						}
+						characters = noms;
+						comboBox.setModel(new DefaultComboBoxModel(characters));
+						equipo++;
+						b++;
+						
+					}
 					String equipoObj = equipoa;
 					//resumen de la partida
 					texto += resum( mA,  mD,  nom,  equipoObj);
 					//escoje la imagen del personaje
-					if((equipo+1) < cantidad) {
-						imgIcon=new ImageIcon(Equipo.foto(tipos[equipo+1]));
+					if((equipo+1) < equipos.size()) {
+						imgIcon=new ImageIcon(Equipo.foto(tipos[b]));
 						lblNewLabel.setIcon(imgIcon);
-
+						
 					}
-
-					// aqui empieza el sistema de daÃ±o
-					atacar(posicion, equipoma, equipomd, equipo, cantidad, tipos[equipo]);
+					
+					// aqui empieza el sistema de daño
+					atacar(posicion, equipoma, equipomd, equipo, equipos.size(), tipos[equipo], previda);
 					// Aqui acaba
 					vidas(cantidad); //Actualizar las vidas
-					equipo = equipo + 1;
-					if (equipo == cantidad) {
-						finalizar(cantidad, tipos, nom);
-
+					equipo++;
+					b++;
+					ronda++;
+					if (ronda >= equipos.size()+c) {
+						finalizar(equipos.size(), tipos, nom);
+						c=0;
 					}
-					if (equipo < cantidad) {
-						textField.setText(nom[equipo]);
+					if (equipo < equipos.size()) {
+						textField.setText(equipos.get(equipo).Nombre);
 						slider(tipos);
 
 					}
 
-					if (equipo < cantidad) {
+					if (equipo < equipos.size()) {
 						nmisiles = Equipo.getmisilestipo(tipos[equipo]);
 					}
 					textField_cohete.setText(Integer.toString(nmisiles));
-
+					
 				}
-				cont = 0;
+				
 			}
 		});
 		restar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(misilesAtck == equipos.get(equipo).misila) {
+					
+				}
 				ma = textField_1.getText();
 				misilesAtck = Integer.valueOf(ma);
-				misilesAtck--;
+				if(misilesAtck == 0) {
+					
+				}
+				else{
+					misilesAtck--;
+				}
+				
 				atk.setValue(misilesAtck);
 				ma = Integer.toString(misilesAtck);
 				textField_1.setText(ma);
@@ -621,19 +630,36 @@ public class Batalla extends JPanel {
 		});
 		sumar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 				ma = textField_1.getText();
 				misilesAtck = Integer.valueOf(ma);
-				misilesAtck++;
+				if(misilesAtck == equipos.get(equipo).misil) {
+					
+				}
+				else{
+					misilesAtck++;
+				}
 				atk.setValue(misilesAtck);
 				ma = Integer.toString(misilesAtck);
 				textField_1.setText(ma);
+				
 			}
 		});
 		restar2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(misilesDef == equipos.get(equipo).misild) {
+					
+				}
 				md = textField_2.getText();
 				misilesDef = Integer.valueOf(md);
-				misilesDef--;
+				if(misilesDef == 0) {
+					
+				}
+				else{
+					misilesDef--;
+				}
+				
+			
 				def.setValue(misilesDef);
 				md = Integer.toString(misilesDef);
 				textField_2.setText(md);
@@ -641,12 +667,23 @@ public class Batalla extends JPanel {
 		});
 		sumar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				if(misilesDef == equipos.get(equipo).misild) {
+					
+				}
 				md = textField_2.getText();
 				misilesDef = Integer.valueOf(md);
-				misilesDef++;
+				if(misilesDef == equipos.get(equipo).misil/2) {
+					
+				}
+				else{
+					misilesDef++;
+				}
+				
 				def.setValue(misilesDef);
 				md = Integer.toString(misilesDef);
 				textField_2.setText(md);
+				
+				
 			}
 		});
 		atk.addChangeListener(new ChangeListener() {
@@ -696,20 +733,33 @@ public class Batalla extends JPanel {
 		Marco.setVisible(true);
 
 	}
-		public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad, String tipo) {
-			int cont = 0;
-			int equi[] = new int[cantidad];
+		public void atacar(int enemigo, int equipoma, int equipomd, int tu, int cantidad, String tipo, int previda[]) {
 			int equiO[] = new int[cantidad];
-			int previda [] = new int[cantidad];
-			previda[cont] = equipos.get(tu).hp;
-			equi[cont] = tu;
-			equiO[cont] = enemigo;
+			previda[equipo] = equipos.get(tu).hp;
+		
+			equiO[equipo] = enemigo;
 			equipos.get(tu).misila = equipoma;
 			equipos.get(tu).misild = equipomd;
 			ataquesespeciales(tipo, tu, previda[tu], cantidad, enemigo);
+			
 			equipos.get(tu).hp = equipos.get(tu).hp + (equipomd/2);
 			equipos.get(enemigo).hp = equipos.get(enemigo).hp - equipoma;
-			
+			if(equipos.get(enemigo).hp <= 0) {
+				muerte++;
+				equipos.get(enemigo).hp = 0;
+				b++;
+				c++;
+				equipos.remove(enemigo);
+				vidasmuerto(enemigo);
+				String noms[] = new String[equipos.size()];
+				for(int i = 0; i < equipos.size(); i++) {
+					noms[i]= equipos.get(i).Nombre;
+				}
+				characters = noms;
+				comboBox.setModel(new DefaultComboBoxModel(characters));
+				
+				
+			}
 			if(equipo == cantidad-1) {
 				/* Subzero da errores
 				for(int i = 0; i < cantidad; i++) {
@@ -718,14 +768,53 @@ public class Batalla extends JPanel {
 					equipos.get(equiO[i]).misild = 0;
 				}
 				}*/
-				for(int i = 0; i < cantidad; i++) {
-					if(equipos.get(equi[i]).hp > previda[i]) {
-					equipos.get(equi[i]).hp = previda[i];
-				}
-				}
+				
 				
 			}
-			cont++;
+			
+		}
+		public void vidasmuerto(int muerto) {
+			muerto = muerto+1;
+			if(muerto == 1) {	
+				textField_4.setText(0 +" hp");
+		}
+			if(muerto == 2) {	
+			textField_6.setText(0 +" hp");
+		}	
+		if(muerto == 3) {	
+			
+			textField_8.setText(0 +" hp");
+	}
+
+	if(muerto == 4) {
+	
+	textField_10.setText(0+" hp");
+		}
+	if(muerto == 5) {
+	
+	textField_12.setText(0 +" hp");
+	}
+	if(muerto == 6) {
+	
+	textField_14.setText(0 +" hp");
+	}
+	if(muerto == 7) {
+	
+	textField_16.setText(0 +" hp");
+	}
+	if(muerto == 8) {
+	
+	textField_18.setText(0 +" hp");
+	}
+	if(muerto == 9) {
+	
+	textField_20.setText(0 +" hp");
+	}
+	if(muerto == 10) {
+	
+	textField_22.setText(0 +" hp");
+	}
+	
 		}
 	public void ataquesespeciales(String tipo, int a, int previda, int cantidad, int enemigo) {
 		if(tipo.equals("Stickman")) {
@@ -775,7 +864,7 @@ public class Batalla extends JPanel {
 		if(tipo.equals("Sub-Zero")) {
 			int aleatorio = r.nextInt(100)+1;
 			if(aleatorio <= 10) {
-				sub[equipo]=enemigo+1;
+				
 			}
 
 		}
@@ -802,26 +891,33 @@ public class Batalla extends JPanel {
 
 	}
 	public void vidas(int cantidad) {
-	if(cantidad == 3) {	
+		if(equipos.size() == 1) {	
+			textField_4.setText(equipos.get(0).hp +" hp");
+	}
+		if(equipos.size() == 2) {	
+			textField_4.setText(equipos.get(0).hp +" hp");
+			textField_6.setText(equipos.get(1).hp +" hp");
+	}	
+	if(equipos.size() == 3) {	
 		textField_4.setText(equipos.get(0).hp +" hp");
 		textField_6.setText(equipos.get(1).hp +" hp");
 		textField_8.setText(equipos.get(2).hp +" hp");
 }
 
-if(cantidad == 4) {
+if(equipos.size() == 4) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");
 textField_10.setText(equipos.get(3).hp +" hp");
 	}
-if(cantidad == 5) {
+if(equipos.size() == 5) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");
 textField_10.setText(equipos.get(3).hp +" hp");
 textField_12.setText(equipos.get(4).hp +" hp");
 }
-if(cantidad == 6) {
+if(equipos.size() == 6) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");
@@ -829,7 +925,7 @@ textField_10.setText(equipos.get(3).hp +" hp");
 textField_12.setText(equipos.get(4).hp +" hp");
 textField_14.setText(equipos.get(5).hp +" hp");
 }
-if(cantidad == 7) {
+if(equipos.size() == 7) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");
@@ -838,7 +934,7 @@ textField_12.setText(equipos.get(4).hp +" hp");
 textField_14.setText(equipos.get(5).hp +" hp");
 textField_16.setText(equipos.get(6).hp +" hp");
 }
-if(cantidad == 8) {
+if(equipos.size() == 8) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");
@@ -848,7 +944,7 @@ textField_14.setText(equipos.get(5).hp +" hp");
 textField_16.setText(equipos.get(6).hp +" hp");
 textField_18.setText(equipos.get(7).hp +" hp");
 }
-if(cantidad == 9) {
+if(equipos.size() == 9) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");
@@ -859,7 +955,7 @@ textField_16.setText(equipos.get(6).hp +" hp");
 textField_18.setText(equipos.get(7).hp +" hp");
 textField_20.setText(equipos.get(8).hp +" hp");
 }
-if(cantidad == 10) {
+if(equipos.size() == 10) {
 textField_4.setText(equipos.get(0).hp +" hp");
 textField_6.setText(equipos.get(1).hp +" hp");
 textField_8.setText(equipos.get(2).hp +" hp");

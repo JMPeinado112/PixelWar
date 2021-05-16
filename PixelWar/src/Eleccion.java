@@ -283,7 +283,7 @@ public class Eleccion extends JPanel implements ActionListener{
 				String s6 =	s = (String) pers6.getSelectedItem();
 				String s7 =	s = (String) pers7.getSelectedItem();
 				String s8 =	s = (String) pers8.getSelectedItem();
-				String s9 =	s = (String) pers8.getSelectedItem();
+				String s9 =	s = (String) pers9.getSelectedItem();
 				if(cantidades == 9 && s1 == null || s2 == null || s3 == null || s4 == null || s5 == null || s6 == null || s7 == null|| s8 == null|| s9 == null) {
 
 					JOptionPane.showInternalMessageDialog(null, "ELIGE TIPO DE EQUIPO", "Error de tipo de equipo", 0);
@@ -316,8 +316,8 @@ public class Eleccion extends JPanel implements ActionListener{
 				String s6 =	s = (String) pers6.getSelectedItem();
 				String s7 =	s = (String) pers7.getSelectedItem();
 				String s8 =	s = (String) pers8.getSelectedItem();
-				String s9 =	s = (String) pers8.getSelectedItem();
-				String s10 =	s = (String) pers8.getSelectedItem();
+				String s9 =	s = (String) pers9.getSelectedItem();
+				String s10 =	s = (String) pers10.getSelectedItem();
 				if(cantidades == 10 && s1 == null || s2 == null || s3 == null || s4 == null || s5 == null || s6 == null || s7 == null|| s8 == null|| s9 == null|| s10 == null) {
 
 					JOptionPane.showInternalMessageDialog(null, "ELIGE TIPO DE EQUIPO", "Error de tipo de equipo", 0);

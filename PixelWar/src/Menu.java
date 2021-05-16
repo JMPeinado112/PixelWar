@@ -1,3 +1,5 @@
+
+
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -117,7 +119,7 @@ public class Menu extends JPanel implements ActionListener{
 		if(e.getSource()==boton3) {
 			JFrame Marco = (JFrame)SwingUtilities.getWindowAncestor(this);
 			Marco.remove(this);
-	
+			Marco.getContentPane().add(new Creditos());
 			Marco.setVisible(true);
 		}
 		if(e.getSource()==boton4) {

@@ -25,7 +25,7 @@ public class Equipo{
 		if(tipo.equals("Link")) {
 			hp = 200;
 		}
-		if(tipo.equals("Link")) {
+		if(tipo.equals("Creeper")) {
 			hp = 200;
 		}
 		if(tipo.equals("Sonic")) {
@@ -61,7 +61,7 @@ public class Equipo{
 		if(tipo.equals("Link")) {
 			misiles = 50;
 		}
-		if(tipo.equals("Link")) {
+		if(tipo.equals("Creeper")) {
 			misiles = 50;
 		}
 		if(tipo.equals("Sonic")) {
@@ -96,7 +96,7 @@ public class Equipo{
 		if(tipo.equals("Link")) {
 			misiles = 50;
 		}
-		if(tipo.equals("Link")) {
+		if(tipo.equals("Creeper")) {
 			misiles = 50;
 		}
 		if(tipo.equals("Sonic")) {
@@ -140,7 +140,7 @@ public class Equipo{
 			imagen = "assets/personajes/Sonic.png";
 		}
 		if(tipo.equals("Ratchet & Clank")) {
-			imagen = "assets/personajes/Ratchet and Clank.png";
+			imagen = "assets/personajes/Ratchet and clank.png";
 		}
 		if(tipo.equals("Donkey Kong")) {
 			imagen = "assets/personajes/DK.png";
@@ -179,13 +179,13 @@ public class Equipo{
 			imagen = "assets/caras/Sonic.png";
 		}
 		if(tipo.equals("Ratchet & Clank")) {
-			imagen = "assets/caras/Ratchet and Clank.png";
+			imagen = "assets/caras/Ratchet.png";
 		}
 		if(tipo.equals("Donkey Kong")) {
 			imagen = "assets/caras/Donkey Kong.png";
 		}
 		if(tipo.equals("Clank")) {
-			imagen = "assets/caras/clank.png";
+			imagen = "assets/caras/cara_clank.png";
 		}
 		if(tipo.equals("Mario")) {
 			imagen = "assets/caras/Mario.png";
